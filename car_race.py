@@ -19,6 +19,7 @@ class Car:
     def show_stats(self):
         print(f"{self.driver} advanced to the {self.miles_driven} mile marker.")
 
+
     def winner(self):  
         print(f"{self.driver} won the race!")
     
@@ -50,28 +51,38 @@ def main():
     myCar.show_car_info()
     print()
     print("The race has begun...")
+    print()
 
     # drive both cars at one time
     milesMusk = 0
     milesMe = 0
-    while milesMusk < miles_to_win and milesMe < miles_to_win: 
+    while milesMusk < miles_to_win and milesMe < miles_to_win:
         milesMusk = muskCar.drive_car()
         milesMe = myCar.drive_car()
-        muskCar.show_stats()
-        myCar.show_stats()
         if milesMusk < miles_to_win and milesMe < miles_to_win:
+            muskCar.show_stats()
+            myCar.show_stats()
             print()
-            muskCar.obstacle()
-            myCar.obstacle()
-        
-       
-    print()
-    if milesMusk > milesMe:
-        muskCar.winner()
-    elif milesMusk == milesMe:
-        print("It's a tie!")
-    else:
-        myCar.winner()
+        elif milesMusk > miles_to_win:
+            muskCar.show_stats()
+            print()
+            muskCar.winner()
+            break
+        elif milesMe > miles_to_win:
+            muskCar.show_stats()
+            myCar.show_stats()
+            print()
+            myCar.winner()
+            break
+        elif milesMusk == milesMe:
+            muskCar.show_stats()
+            myCar.show_stats()
+            print()
+            print("It's a tie!")
+            break
+        muskCar.obstacle()
+        myCar.obstacle()
+        print()
     
 
 if __name__ == "__main__":
